@@ -1,0 +1,1154 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-piwik/node_modules/piwik/piwik.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-piwik">npmtest-piwik (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-piwik/node_modules/piwik/piwik.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">16.19% <small>(17 / 105)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 63)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">16.19% <small>(17 / 105)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-piwik/node_modules/piwik/</a> &#187; piwik.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*
+Name:           piwik
+Description:    Access a Piwik API or track hits with node.js
+Author:         Franklin van de Meent (https://frankl.in)
+Source &amp; docs:  https://github.com/fvdm/nodejs-piwik
+Feedback:       https://github.com/fvdm/nodejs-piwik/issues
+License:        Unlicense / Public Domain (see UNLICENSE file)
+                (https://github.com/fvdm/nodejs-piwik/raw/develop/UNLICENSE)
+*/
+&nbsp;
+var urltool = require ('url');
+var querystring = require ('querystring');
+var http = require ('httpreq');
+var app = {
+  settings: {
+    timeout: 5000
+  }
+};
+&nbsp;
+&nbsp;
+/**
+ * Callback an error
+ *
+ * @callback callback
+ * @param msg {string} - Error.message
+ * @param err {mixed} - Error.error
+ * @param code {number|null} - Error.code, i.e. `res.statusCode`
+ * @param callback {function} - `function (error) {}`
+ * @return {void}
+ */
+&nbsp;
+<span class="fstat-no" title="function not covered" >function callbackError (msg, err, code, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var error = new Error (msg);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  error.error = err;</span>
+<span class="cstat-no" title="statement not covered" >  error.code = code;</span>
+<span class="cstat-no" title="statement not covered" >  callback (error);</span>
+}
+&nbsp;
+&nbsp;
+/**
+ * Process talk() response
+ *
+ * @callback callback
+ * @param err {Error} - Response error
+ * @param res {object} - Response resource
+ * @param [callback] {function} - Optional `function (err, res) {}`
+ * @returns {void}
+ */
+&nbsp;
+<span class="fstat-no" title="function not covered" >function processResponse (err, res, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var data = res &amp;&amp; res.body || null;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (err) {</span>
+<span class="cstat-no" title="statement not covered" >    callbackError ('request failed', err, null, callback);</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    data = JSON.parse (data);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (data.result &amp;&amp; data.result === 'error') {</span>
+<span class="cstat-no" title="statement not covered" >      callbackError ('api error', data.message, null, callback);</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    callbackError ('response invalid', e, null, callback);</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (res &amp;&amp; res.statusCode &amp;&amp; res.statusCode &gt;= 300) {</span>
+<span class="cstat-no" title="statement not covered" >    callbackError ('http error', data, res.statusCode, callback);</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (callback) {</span>
+<span class="cstat-no" title="statement not covered" >    callback (null, data);</span>
+  }
+}
+&nbsp;
+&nbsp;
+/**
+ * API communication
+ *
+ * @callback props.callback
+ * @param props {object} - Response resource
+ * @param [props.method] {string=GET} - HTTP method: GET, POST
+ * @param [props.path] {string=/} - Request path after hostname
+ * @param [props.timeout] {number-5000} - Request time out in ms
+ * @param [props.query] {object} - Data fields to send along
+ * @param [props.body] {string} - POST JSON encoded body
+ * @param [props.callback] {function} - Optional `function (err, res) {}`
+ * @returns {void}
+ */
+&nbsp;
+<span class="fstat-no" title="function not covered" >function talk (props) {</span>
+<span class="cstat-no" title="statement not covered" >  var key;</span>
+<span class="cstat-no" title="statement not covered" >  var options = {</span>
+    url: app.settings.baseURL + (props.path || ''),
+    method: props.method,
+    headers: {},
+    timeout: props.timeout || app.settings.timeout
+  };
+&nbsp;
+  // build request
+<span class="cstat-no" title="statement not covered" >  if (props.query instanceof Object) {</span>
+<span class="cstat-no" title="statement not covered" >    for (key in props.query) {</span>
+<span class="cstat-no" title="statement not covered" >      if (typeof props.query[key] === 'object') {</span>
+<span class="cstat-no" title="statement not covered" >        props.query[key] = JSON.stringify (props.query[key]);</span>
+      }
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (props.query) {</span>
+<span class="cstat-no" title="statement not covered" >    options.parameters = props.query;</span>
+  } else <span class="cstat-no" title="statement not covered" >if (props.body) {</span>
+<span class="cstat-no" title="statement not covered" >    options.body = props.body;</span>
+<span class="cstat-no" title="statement not covered" >    options.headers['Content-Type'] = 'application/json';</span>
+<span class="cstat-no" title="statement not covered" >    options.headers['Content-Length'] = options.body.length;</span>
+  }
+&nbsp;
+  // send request
+<span class="cstat-no" title="statement not covered" >  http.doRequest (options, <span class="fstat-no" title="function not covered" >function (err, res) {</span></span>
+<span class="cstat-no" title="statement not covered" >    processResponse (err, res, props.callback);</span>
+  });
+}
+&nbsp;
+&nbsp;
+/**
+ * Setup basics
+ *
+ * @param baseURL {string} - Piwik URL
+ * @param [token] {string=baseURL token_auth} - Piwik API token
+ * @param [timeout] {number} - Request time out in ms
+ * @returns app {object}
+ */
+&nbsp;
+<span class="fstat-no" title="function not covered" >function methodSetup (baseURL, token, timeout) {</span>
+<span class="cstat-no" title="statement not covered" >  var url = urltool.parse (baseURL, true);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  app.settings.baseURL = url.protocol + '//' + url.host</span>
+    + url.pathname.replace (/\/[^\/]+$/, '/');
+&nbsp;
+  // token in baseURL?
+<span class="cstat-no" title="statement not covered" >  app.settings.token = url.query &amp;&amp; url.query.token_auth || null;</span>
+&nbsp;
+  // override with custom token, and set timeout
+<span class="cstat-no" title="statement not covered" >  if (typeof token === 'number') {</span>
+<span class="cstat-no" title="statement not covered" >    timeout = token;</span>
+  } else <span class="cstat-no" title="statement not covered" >if (token) {</span>
+<span class="cstat-no" title="statement not covered" >    app.settings.token = token;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  app.settings.timeout = timeout || app.settings.timeout;</span>
+<span class="cstat-no" title="statement not covered" >  return app;</span>
+}
+&nbsp;
+&nbsp;
+/**
+ * API call
+ *
+ * @callback callback
+ * @callback callback
+ * @param [vars] {object} - Parameters
+ * @param [callback] {function} - `function (err, res) {}`
+ * @returns app {object}
+ */
+&nbsp;
+<span class="fstat-no" title="function not covered" >function methodApi (vars, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  vars = typeof vars === 'object' ? vars : {};</span>
+<span class="cstat-no" title="statement not covered" >  vars.module = 'API';</span>
+<span class="cstat-no" title="statement not covered" >  vars.format = 'JSON';</span>
+<span class="cstat-no" title="statement not covered" >  vars.token_auth = app.settings.token;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  talk ({</span>
+    method: 'GET',
+    path: 'index.php',
+    query: vars,
+    callback: callback || null
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return app;</span>
+}
+&nbsp;
+&nbsp;
+/**
+ * Convert tracking object to full querystring
+ *
+ * @param obj {object} - The tracking object
+ * @return {string} - Full querystring for request
+ */
+&nbsp;
+<span class="fstat-no" title="function not covered" >function trackObject2request (obj) {</span>
+<span class="cstat-no" title="statement not covered" >  var keys = Object.keys (obj);</span>
+<span class="cstat-no" title="statement not covered" >  var key;</span>
+<span class="cstat-no" title="statement not covered" >  var val;</span>
+<span class="cstat-no" title="statement not covered" >  var i;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  for (i = 0; i &lt; keys.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >    key = keys[i];</span>
+<span class="cstat-no" title="statement not covered" >    val = obj[key];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (typeof val === 'object') {</span>
+<span class="cstat-no" title="statement not covered" >      val = JSON.stringify (val);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    obj[key] = val;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  obj.rec = 1;</span>
+<span class="cstat-no" title="statement not covered" >  obj.apiv = 1;</span>
+<span class="cstat-no" title="statement not covered" >  return '?' + querystring.stringify (obj);</span>
+}
+&nbsp;
+&nbsp;
+/**
+ * Track one or multiple hits
+ *
+ * @callback callback
+ * @param vars {object|array} - Parameters or array with parameters objects
+ * @param [callback] {function} - Optional `function (err, res) {}`
+ * @returns app {object}
+ */
+&nbsp;
+<span class="fstat-no" title="function not covered" >function methodTrack (vars, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var bulk = {</span>
+    requests: []
+  };
+<span class="cstat-no" title="statement not covered" >  var i;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (app.settings.token) {</span>
+<span class="cstat-no" title="statement not covered" >    bulk.token_auth = app.settings.token;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (vars instanceof Array &amp;&amp; vars[0] instanceof Object) {</span>
+    // array with objects
+<span class="cstat-no" title="statement not covered" >    for (i = 0; i &lt; vars.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      bulk.requests.push (trackObject2request (vars[i]));</span>
+    }
+  } else <span class="cstat-no" title="statement not covered" >if (vars instanceof Object) {</span>
+    // object
+<span class="cstat-no" title="statement not covered" >    bulk.requests.push (trackObject2request (vars));</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  talk ({</span>
+    method: 'POST',
+    path: 'piwik.php',
+    body: JSON.stringify (bulk),
+    callback: <span class="fstat-no" title="function not covered" >function (err, data) {</span>
+<span class="cstat-no" title="statement not covered" >      if (err &amp;&amp; callback) {</span>
+<span class="cstat-no" title="statement not covered" >        callback (err);</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.status === 'success' &amp;&amp; callback) {</span>
+<span class="cstat-no" title="statement not covered" >        callback (null, data);</span>
+      } else <span class="cstat-no" title="statement not covered" >if (callback) {</span>
+<span class="cstat-no" title="statement not covered" >        callbackError ('track failed', data, null, callback);</span>
+      }
+    }
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return app;</span>
+}
+&nbsp;
+&nbsp;
+/**
+ * Get spammers list from Github repo
+ *
+ * @callback callback
+ * @param callback {function}
+ * @returns app {object}
+ */
+&nbsp;
+<span class="fstat-no" title="function not covered" >function methodLoadSpammers (callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var options = {</span>
+    timeout: app.settings.timeout
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  http.get (</span>
+    'https://github.com/piwik/referrer-spam-blacklist/raw/master/spammers.txt',
+    options,
+<span class="fstat-no" title="function not covered" >    function (err, res) {</span>
+<span class="cstat-no" title="statement not covered" >      var data;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (err) {</span>
+<span class="cstat-no" title="statement not covered" >        callback (err);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        data = res.body</span>
+          .trim()
+          .replace (/\s+\n/g, '\n')
+          .split ('\n')
+          .sort();
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        callback (null, data);</span>
+      }
+    }
+  );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return app;</span>
+}
+&nbsp;
+&nbsp;
+// module
+app.setup = methodSetup;
+app.api = methodApi;
+app.track = methodTrack;
+app.loadSpammers = methodLoadSpammers;
+module.exports = app;
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Fri Apr 21 2017 13:15:13 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
